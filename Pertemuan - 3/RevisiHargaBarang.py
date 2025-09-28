@@ -1,23 +1,32 @@
-# Input data
 namaBarang = input('Masukkan Nama Barang : ')
 jumlahBarang = int(input('Masukkan Jumlah Barang : '))
 hargaBarang = float(input('Masukkan Harga Barang : '))
+member = int(input('Masukkan Kode Member (1=Platinum, 2=Gold, 3=Silver, 4=Non Member): '))
 
-# Hitung total
 totalSebelumPPN = jumlahBarang * hargaBarang
-totalSetelahPPN = totalSebelumPPN * 1.12   # langsung tambah 12% PPN
 
-# Cek diskon
-if totalSetelahPPN >= 100000:
-    totalAkhir = totalSetelahPPN * 0.9  # diskon 10%
+if member == 1:
+    diskonPersen = 25
+elif member == 2:
+    diskonPersen = 15
+elif member == 3:
+    diskonPersen = 5
+elif member == 4:
+    diskonPersen = 0
 else:
-    totalAkhir = totalSetelahPPN
+    print("Kode member salah, Tidak ada diskon!!!")
+    diskonPersen = 0
 
-# Output struk
+diskon = totalSebelumPPN * (diskonPersen / 100)
+totalSetelahDiskon = totalSebelumPPN - diskon
+
+totalSetelahPPN = totalSetelahDiskon + (totalSetelahDiskon * 0.12)
+
 print("\n======= Struk Belanja =======")
 print(f"Nama Barang              : {namaBarang}")
 print(f"Jumlah Barang            : {jumlahBarang}")
 print(f"Harga Barang             : Rp {hargaBarang}")
 print(f"Total sebelum PPN        : Rp {totalSebelumPPN}")
-print(f"Total setelah PPN        : Rp {totalSetelahPPN}")
-print(f"Total setelah Diskon     : Rp {totalAkhir}")
+print(f"Diskon {diskonPersen}%              : Rp {diskon}")
+print(f"Total setelah Diskon     : Rp {totalSetelahDiskon}")
+print(f"Total setelah PPN (12%)  : Rp {totalSetelahPPN}")
