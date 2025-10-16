@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materi Nested IF - Algoritma dan Pemrograman 2</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .prose h2 {
+            border-bottom: 2px solid #e5e7eb;
+            padding-bottom: 0.5rem;
+            margin-top: 2.5rem;
+        }
+        .prose h3 {
+            border-bottom: 1px solid #f3f4f6;
+            padding-bottom: 0.5rem;
+            margin-top: 2rem;
+        }
+        .prose h4 {
+            margin-top: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        .code-block {
+            background-color: #282c34;
+            color: #abb2bf;
+            font-family: 'Fira Code', monospace;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            overflow-x: auto;
+            margin-top: 1rem;
+        }
+        .table-auto th, .table-auto td {
+            border: 1px solid #d1d5db;
+            padding: 0.75rem;
+            text-align: center;
+        }
+        .table-auto th {
+            background-color: #f3f4f6;
+        }
+        .flowchart-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 1.5rem;
+            background-color: #f9fafb;
+            border-radius: 0.5rem;
+            border: 1px solid #e5e7eb;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <div class="container mx-auto p-4 sm:p-6 lg:p-8">
+        
+        <header class="text-center mb-10">
+            <img src="https://lh3.googleusercontent.com/pw/AP1GczP4BN9iz7HU4OOA1TeiymArl1SznDG-TX1UDIbsg3nUokVs3Nr_17TZuw2zyDo-0ZT9W9l-QcG7iSO-1o9NmGYcXsVcV_dvRbK18-lonnacsaMendD3=w150" alt="Logo Undira" class="mx-auto mb-4 h-24">
+            <h1 class="text-4xl font-bold text-gray-900">Materi Pertemuan ke-5: Nested IF</h1>
+            <h2 class="text-xl font-semibold text-gray-700 mt-2">Mata Kuliah: Algoritma dan Pemrograman 2</h2>
+        </header>
+
+        <main class="bg-white p-6 sm:p-8 rounded-lg shadow-md prose max-w-none">
+            
+            <section id="intro">
+                <h2>1. Pengenalan Nested IF (IF Bersarang)</h2>
+                <p><strong>Nested IF</strong> atau <strong>IF Bersarang</   strong> adalah sebuah struktur logika di mana sebuah pernyataan <code>IF</code> berada di dalam pernyataan <code>IF</code> lainnya. Struktur ini memungkinkan kita untuk membangun alur pengecekan kondisi yang lebih kompleks dan bertingkat, terutama untuk mengevaluasi beberapa kondisi yang saling bergantung.</p>
+                <div class="flowchart-container">
+                    <img src="https://images.   shiksha.com/mediadata/images/articles/1699607388phpptI4sB.jpeg" alt="Flowchart Nested IF Umum" class="max-w-full h-auto rounded-md">
+                </div>
+            </section>
+
+            <section id="logic-and-def">
+                <h2>2. Logika AND</h2>
+                <p>Logika <strong>AND</strong> hanya akan menghasilkan nilai <strong>True</strong> jika <strong>semua</strong> kondisi yang dievaluasi bernilai True. Jika ada satu saja kondisi yang False, maka hasil akhirnya adalah False.</p>
+                <h4>Tabel Kebenaran Logika AND</h4>
+                <div class="overflow-x-auto"><table class="table-auto mx-auto my-4"><thead><tr><th>Kondisi 1</th><th>Kondisi 2</th><th>Hasil</th></tr></thead><tbody><tr><td>True</td><td>True</td><td class="bg-green-100 font-bold">True</td></tr><tr><td>True</td><td>False</td><td class="bg-red-100">False</td></tr><tr><td>False</td><td>True</td><td class="bg-red-100">False</td></tr><tr><td>False</td><td>False</td><td class="bg-red-100">False</td></tr></tbody></table></div>
+            </section>
+
+            <section id="logic-or-def">
+                <h2>3. Logika OR</h2>
+                <p>Logika <strong>OR</strong> akan menghasilkan nilai <strong>True</strong> jika <strong>salah satu atau semua</strong> kondisi bernilai True. Hasilnya akan False hanya jika semua kondisi bernilai False.</p>
+                <h4>Tabel Kebenaran Logika OR</h4>
+                <div class="overflow-x-auto"><table class="table-auto mx-auto my-4"><thead><tr><th>Kondisi 1</th><th>Kondisi 2</th><th>Hasil</th></tr></thead><tbody><tr><td>True</td><td>True</td><td class="bg-green-100 font-bold">True</td></tr><tr><td>True</td><td>False</td><td class="bg-green-100 font-bold">True</td></tr><tr><td>False</td><td>True</td><td class="bg-green-100 font-bold">True</td></tr><tr><td>False</td><td>False</td><td class="bg-red-100">False</td></tr></tbody></table></div>
+            </section>
+            
+            <section id="pruning">
+                <h2>4. Konsep Pruning (Pemangkasan)</h2>
+                <p>Pruning (atau <em>short-circuit evaluation</em>) adalah konsep di mana program berhenti mengevaluasi sisa kondisi jika hasil akhirnya sudah dapat ditentukan. Ini membuat eksekusi program lebih efisien.</p>
+                
+                <h3>Pruning untuk Logika AND</h3>
+                <p>Pada logika AND, jika kondisi pertama sudah <strong>False</strong>, maka hasil akhir pasti False. Program tidak perlu memeriksa kondisi kedua.</p>
+                <h4>Tabel Kebenaran Pruning AND</h4>
+                <div class="overflow-x-auto"><table class="table-auto mx-auto my-4"><thead><tr><th>Kondisi 1</th><th>Kondisi 2</th><th>Hasil</th></tr></thead><tbody><tr><td>True</td><td>True</td><td class="bg-green-100 font-bold">True</td></tr><tr><td>True</td><td>False</td><td class="bg-red-100">False</td></tr><tr><td>False</td><td class="text-gray-400">Tidak Dicek</td><td class="bg-red-100">False</td></tr><tr><td>False</td><td class="text-gray-400">Tidak Dicek</td><td class="bg-red-100">False</td></tr></tbody></table></div>
+                
+                <h3>Pruning untuk Logika OR</h3>
+                <p>Pada logika OR, jika kondisi pertama sudah <strong>True</strong>, maka hasil akhir pasti True. Program tidak perlu memeriksa kondisi kedua.</p>
+                <h4>Tabel Kebenaran Pruning OR</h4>
+                <div class="overflow-x-auto"><table class="table-auto mx-auto my-4"><thead><tr><th>Kondisi 1</th><th>Kondisi 2</th><th>Hasil</th></tr></thead><tbody><tr><td>True</td><td class="text-gray-400">Tidak Dicek</td><td class="bg-green-100 font-bold">True</td></tr><tr><td>True</td><td class="text-gray-400">Tidak Dicek</td><td class="bg-green-100 font-bold">True</td></tr><tr><td>False</td><td>True</td><td class="bg-green-100 font-bold">True</td></tr><tr><td>False</td><td>False</td><td class="bg-red-100">False</td></tr></tbody></table></div>
+            </section>
+
+            <section id="case-and">
+                <h2>5. Contoh Kasus NESTED IF: Logika AND</h2>
+                <p><strong>Studi Kasus:</strong> Seseorang berhak mendapatkan Surat Izin Mengemudi (SIM) jika usianya minimal 17 tahun <strong>DAN</strong> sudah lulus ujian teori.</p>
+
+                <h3>Tabel Kebenaran Tanpa Pruning</h3>
+                <div class="overflow-x-auto"><table class="table-auto mx-auto my-4"><thead><tr><th>Usia >= 17?</th><th>Lulus Ujian?</th><th>Hasil</th></tr></thead><tbody><tr><td>True</td><td>True</td><td class="bg-green-100 font-bold">Berhak</td></tr><tr><td>True</td><td>False</td><td class="bg-red-100">Tidak Berhak</td></tr><tr><td>False</td><td>True</td><td class="bg-red-100">Tidak Berhak</td></tr><tr><td>False</td><td>False</td><td class="bg-red-100">Tidak Berhak</td></tr></tbody></table></div>
+
+                <h4>Program Tanpa Pruning</h4>
+                <p>Pendekatan ini menggunakan struktur Nested IF yang lebih kompleks untuk mencoba menampilkan semua kemungkinan hasil pengecekan. Perhatikan bagaimana alur logika menjadi kurang intuitif dibandingkan dengan pendekatan pruning.</p>
+                <div class="code-block"><pre><code># Program Tanpa prunning
+usia = 17
+lulus_ujian_teori = False
+
+print("\n--- Pengecekan Kelayakan (Tanpa Pruning) ---")
+print(f"Usia Anda: {usia} tahun")
+print(f"Status Ujian Teori: {'Lulus' if lulus_ujian_teori else 'Tidak Lulus'}")
+print("------------------------------------------")
+
+# Pengecekan kondisi 1 (usia)
+if usia >= 17:
+  if lulus_ujian_teori == True:
+    print("✅ Pengecekan 1: Usia terpenuhi.")
+    print("✅ Pengecekan 2: Status lulus ujian terpenuhi.")
+    print("\n🎉 Selamat! Anda berhak membuat SIM.")
+  else:
+    print("✅ Pengecekan 1: Usia terpenuhi.")
+    print("❌ Pengecekan 2: Status lulus ujian TIDAK terpenuhi.")
+    print("\nMaaf, Anda tidak memenuhi semua syarat.")
+else:
+  if lulus_ujian_teori == True:
+    print("❌ Pengecekan 1: Usia TIDAK terpenuhi.")
+    print("✅ Pengecekan 2: Status lulus ujian terpenuhi.")
+    print("\nMaaf, Anda tidak memenuhi semua syarat.")
+  else:
+    print("❌ Pengecekan 1: Usia TIDAK terpenuhi.")
+    print("❌ Pengecekan 2: Status lulus ujian TIDAK terpenuhi.")
+    print("\nMaaf, Anda tidak memenuhi semua syarat.")</code></pre></div>
+
+                <h3>Tabel Kebenaran Menggunakan Pruning</h3>
+                <div class="overflow-x-auto"><table class="table-auto mx-auto my-4"><thead><tr><th>Usia >= 17?</th><th>Lulus Ujian?</th><th>Hasil</th></tr></thead><tbody><tr><td>True</td><td>True</td><td class="bg-green-100 font-bold">Berhak</td></tr><tr><td>True</td><td>False</td><td class="bg-red-100">Tidak Berhak</td></tr><tr><td>False</td><td class="text-gray-400">Tidak Dicek</td><td class="bg-red-100">Tidak Berhak</td></tr><tr><td>False</td><td class="text-gray-400">Tidak Dicek</td><td class="bg-red-100">Tidak Berhak</td></tr></tbody></table></div>
+                
+                <h4>Program Menggunakan Pruning</h4>
+                <p>Berikut adalah contoh struktur Nested IF yang menerapkan pruning. Jika `usia` kurang dari 17, blok `if` bagian dalam tidak akan pernah dieksekusi.</p>
+                <div class="code-block"><pre><code># Program Dengan prunning
+usia = 16
+lulus_ujian_teori = True
+
+print("\n--- Pengecekan Kelayakan (Dengan Pruning) ---")
+print(f"Usia Anda: {usia} tahun")
+print(f"Status Ujian Teori: {'Lulus' if lulus_ujian_teori else 'Tidak Lulus'}")
+print("------------------------------------------")
+
+# Pengecekan kondisi 1 (usia)
+if usia >= 17:
+    print("✅ Pengecekan 1: Usia terpenuhi.")
+    # Jika usia terpenuhi, lanjut ke pengecekan 2
+    if lulus_ujian_teori == True:
+        print("✅ Pengecekan 2: Status lulus ujian terpenuhi.")
+        print("\n🎉 Selamat! Anda berhak membuat SIM.")
+    else:
+        print("❌ Pengecekan 2: Status lulus ujian TIDAK terpenuhi.")
+        print("\nMaaf, Anda tidak memenuhi syarat karena belum lulus ujian.")
+else:
+    # Jika usia tidak terpenuhi, proses berhenti (pruning)
+    print("❌ Pengecekan 1: Usia TIDAK terpenuhi.")
+    print("\nMaaf, Anda tidak memenuhi syarat karena usia belum mencukupi.")</code></pre></div>
+            </section>
+            
+            <section id="case-or">
+                <h2>6. Contoh Kasus NESTED IF: Logika OR</h2>
+                <p><strong>Studi Kasus:</strong> Seseorang dianggap "layak menerima bantuan sosial" jika usianya minimal 60 tahun (dianggap lansia) <strong>ATAU</strong> memiliki surat rekomendasi khusus (misalnya dari dinas sosial karena kondisi tertentu).</p>
+
+                <h3>Tabel Kebenaran Tanpa Pruning</h3>
+                <div class="overflow-x-auto"><table class="table-auto mx-auto my-4"><thead><tr><th>Usia >= 60?</th><th>Punya Rekomendasi?</th><th>Hasil</th></tr></thead><tbody><tr><td>True</td><td>True</td><td class="bg-green-100 font-bold">Layak</td></tr><tr><td>True</td><td>False</td><td class="bg-green-100 font-bold">Layak</td></tr><tr><td>False</td><td>True</td><td class="bg-green-100 font-bold">Layak</td></tr><tr><td>False</td><td>False</td><td class="bg-red-100">Tidak Layak</td></tr></tbody></table></div>
+
+                <h4>Program Tanpa Pruning</h4>
+                <p>Pendekatan ini menggunakan struktur Nested IF yang lebih kompleks untuk menampilkan semua kemungkinan hasil pengecekan, sama seperti pada contoh logika AND.</p>
+                <div class="code-block"><pre><code># Inisialisasi variabel
+usia = 55
+punya_rekomendasi = True
+
+print("\n--- Pengecekan Kelayakan (Tanpa Pruning) ---")
+print(f"Usia Anda: {usia} tahun")
+print(f"Punya Rekomendasi: {'Ya' if punya_rekomendasi else 'Tidak'}")
+print("------------------------------------------")
+
+if usia >= 60:
+    if punya_rekomendasi == True:
+        print("✅ Pengecekan 1: Usia terpenuhi.")
+        print("✅ Pengecekan 2: Rekomendasi terpenuhi.")
+        print("\n🎉 Selamat! Anda dinyatakan Layak.")
+    else:
+        print("✅ Pengecekan 1: Usia terpenuhi.")
+        print("❌ Pengecekan 2: Rekomendasi TIDAK terpenuhi.")
+        print("\n🎉 Selamat! Anda dinyatakan Layak (karena usia).")
+else:
+    if punya_rekomendasi == True:
+        print("❌ Pengecekan 1: Usia TIDAK terpenuhi.")
+        print("✅ Pengecekan 2: Rekomendasi terpenuhi.")
+        print("\n🎉 Selamat! Anda dinyatakan Layak (karena rekomendasi).")
+    else:
+        print("❌ Pengecekan 1: Usia TIDAK terpenuhi.")
+        print("❌ Pengecekan 2: Rekomendasi TIDAK terpenuhi.")
+        print("\nMaaf, Anda tidak memenuhi syarat kelayakan.")</code></pre></div>
+
+                <h3>Tabel Kebenaran Menggunakan Pruning</h3>
+                <div class="overflow-x-auto"><table class="table-auto mx-auto my-4"><thead><tr><th>Usia >= 60?</th><th>Punya Rekomendasi?</th><th>Hasil</th></tr></thead><tbody><tr><td>True</td><td class="text-gray-400">Tidak Dicek</td><td class="bg-green-100 font-bold">Layak</td></tr><tr><td>True</td><td class="text-gray-400">Tidak Dicek</td><td class="bg-green-100 font-bold">Layak</td></tr><tr><td>False</td><td>True</td><td class="bg-green-100 font-bold">Layak</td></tr><tr><td>False</td><td>False</td><td class="bg-red-100">Tidak Layak</td></tr></tbody></table></div>
+
+                <h4>Program Menggunakan Pruning</h4>
+                <p>Pendekatan ini lebih efisien. Jika usia sudah memenuhi syarat, program langsung memberikan hasil "Layak" tanpa perlu memeriksa surat rekomendasi (pruning).</p>
+                <div class="code-block"><pre><code># Inisialisasi variabel
+usia = 65
+punya_rekomendasi = False
+
+print("\n--- Pengecekan Kelayakan (Dengan Pruning) ---")
+if usia >= 60:
+    print("✅ Pengecekan 1: Usia terpenuhi. (Proses berhenti)")
+    print("\n🎉 Selamat! Anda dinyatakan Layak.")
+else:
+    print("❌ Pengecekan 1: Usia TIDAK terpenuhi.")
+    if punya_rekomendasi == True:
+        print("✅ Pengecekan 2: Rekomendasi terpenuhi.")
+        print("\n🎉 Selamat! Anda dinyatakan Layak.")
+    else:
+        print("❌ Pengecekan 2: Rekomendasi TIDAK terpenuhi.")
+        print("\nMaaf, Anda tidak memenuhi syarat kelayakan.")</code></pre></div>
+            </section>
+            
+            <section id="colab-link">
+                 <h2>Coba Kode di Google Colab</h2>
+                 <p>Anda dapat mencoba dan memodifikasi semua contoh kode di atas secara interaktif melalui tautan Google Colaboratory berikut:</p>
+                 <p><a href="https://colab.research.google.com/drive/1nBPEJotyxiOy1pZPmXwquZ5ReWcAeFtH?usp=sharing" target="_blank" class="text-blue-600 hover:underline">Link Google Colabs untuk Materi Nested IF</a></p>
+            </section>
+
+            <section id="latihan-rumah">
+                <h2>7. Latihan di Rumah (Tugas Individu)</h2>
+                <p>Kerjakan latihan berikut untuk memperdalam pemahaman Anda tentang penerapan <strong>Nested IF</strong>. Tugas ini wajib dikerjakan dan dikumpulkan.</p>
+                
+                <h3>Studi Kasus: Sistem Klasifikasi Kelayakan Bonus Karyawan</h3>
+                <p>Sebuah perusahaan ingin membuat program sederhana untuk menentukan apakah seorang karyawan berhak mendapatkan bonus akhir tahun. Ada dua jenis bonus: "Bonus Kinerja" dan "Bonus Loyalitas".</p>
+
+                <h4>Ketentuan Bonus:</h4>
+                <ol class="list-decimal list-inside space-y-2">
+                    <li>
+                        <strong>Bonus Kinerja (Logika AND):</strong>
+                        Seorang karyawan berhak mendapatkan <strong>Bonus Kinerja</strong> jika Penilaian Kinerja (skala 1-10) mereka bernilai <strong>di atas 8 DAN</strong> Kehadiran (dalam persen) mereka <strong>di atas 95%</strong>.
+                    </li>
+                    <li>
+                        <strong>Bonus Loyalitas (Logika OR):</strong>
+                        Seorang karyawan berhak mendapatkan <strong>Bonus Loyalitas</strong> jika masa kerja mereka sudah <strong>di atas 5 tahun ATAU</strong> mereka memegang sertifikasi profesional yang relevan.
+                    </li>
+                </ol>
+
+                <h4>Tugas Anda:</h4>
+                <ol class="list-decimal list-inside space-y-3">
+                    <li>
+                       Untuk setiap jenis bonus (Kinerja dan Loyalitas), buatlah <strong> Flowchart, Tabel Kebenaran,  Tanpa Pruning</strong> dan <strong> Dengan Pruning</strong>.
+                    </li>
+                    <li>
+                        Buatlah <strong>dua program Python terpisah</strong> (satu untuk Bonus Kinerja dan satu untuk Bonus Loyalitas) di dalam satu notebook Google Colab
+                    </li>
+                    <li>
+                        Gunakan struktur <strong>Nested IF (tanpa prunning dan dengan pruning)</strong> untuk mengimplementasikan logika di atas. Jangan gunakan operator logika <code>and</code> atau <code>or</code>.
+                    </li>
+                    <li>
+                        Berikan output/print yang jelas untuk setiap langkah pengecekan dan hasil akhirnya (mirip seperti contoh pada materi ini).
+                    </li>
+                     <li>
+                        Uji setiap program dengan <strong>dua skenario data yang berbeda</strong> untuk menunjukkan bahwa semua cabang logika (True/False) berjalan dengan benar.
+                    </li>
+                </ol>
+
+                <h4>Ketentuan Pengumpulan:</h4>
+                <ul class="list-disc list-inside space-y-2">
+                    <li>Semua pekerjaan (tabel kebenaran, kode program, dan hasil output) harus dikerjakan di dalam satu notebook <strong>Google Colab</strong>.</li>
+                    <li>Buatlah sebuah <strong>Google Doc</strong> baru, lalu salin (copy-paste) <strong>link Google Colab Anda</strong> ke dalamnya.</li>
+                    <li>Pastikan link Google Colab Anda sudah diatur agar dapat diakses oleh siapa saja (Share > Anyone with the link > Viewer).</li>
+                    <li>
+                        <strong>Batas Waktu Pengumpulan:</strong> Sebelum pertemuan berikutnya.
+                    </li>
+                    <li>
+                        <strong>Kumpulkan LINK GOOGLE DOC Anda pada tautan formulir berikut:</strong>
+                        <a href="https://forms.gle/P1hpwEpWjVaZVGDv5" target="_blank" class="text-blue-600 font-semibold hover:underline">https://forms.gle/P1hpwEpWjVaZVGDv5</a>
+                    </li>
+                </ul>
+            </section>
+        </main>
+
+        <footer class="text-center mt-10 text-sm text-gray-500">
+            <p>Materi ini disusun untuk perkuliahan Algoritma dan Pemrograman 2.</p>
+        </footer>
+    </div>
+
+</body>
+</html>
